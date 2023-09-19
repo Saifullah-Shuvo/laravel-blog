@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.bloghome');
 });
+Route::get('/singlepost', function () {
+    return view('frontend.singlepost');
+})->name('singlepost');
+Route::get('/component', function () {
+    return view('frontend.component');
+})->name('component');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
