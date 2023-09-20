@@ -31,22 +31,22 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-                'name' => ['required', 'string', 'max:255'],
+                'name' => ['required', 'string', 'min:5'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
                 'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
+            ],
+            [
+                'name.required' => 'Name is required',
+                'name.string' => 'Name should be a string',
+                'name.max' => 'Name should be within 255 character',
+                'email.required' => 'Email is required',
+                'email.string' => 'Email should be a string',
+                'email.max' => 'Email should be within 255 character',
+                'email.unique' => 'Email shuld be unique',
+                'password.required' => 'Password is required',
+                //'password.min' => 'Password should be atleast 8 character',
+                'password.confirmed' => 'Password should be confirmed',
             ]);
-            // [
-            //     'name.required' => 'Name is required',
-            //     'name.string' => 'Name should be a string',
-            //     'name.max' => 'Name should be within 255 character',
-            //     'email.required' => 'Email is required',
-            //     'email.string' => 'Email should be a string',
-            //     'email.max' => 'Email should be within 255 character',
-            //     'email.unique' => 'Email shuld be unique',
-            //     'password.required' => 'Password is required',
-            //     'password.min' => 'Password should be atleast 8 character',
-            //     'password.confirmed' => 'Password should be confirmed',
-            // ]
 
         $user = User::create([
             'name' => $request->name,

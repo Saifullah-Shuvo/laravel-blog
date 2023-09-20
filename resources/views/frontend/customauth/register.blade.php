@@ -27,9 +27,7 @@ Register
             <form method="POST" action="{{route('register')}}">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
-                    @if ($errors->any())
+                    {{-- @if ($errors->any())
                         <div class="text-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -37,28 +35,33 @@ Register
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                    @endif --}}
+                    <label for="name"><b>Name</b></label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
+                    @error('name')
+                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email"><b>Email</b></label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
-                    @if ($errors ->any())
-                        <div class="text-danger">
-                            <ul>
-                                @foreach ($errors->all as $error)
-                                    <li> {{$error}} </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                    @error('email')
+                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password"><b>Password</b></label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" required>
+                    @error('password')
+                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password_confirmation">Confirm Password</label>
+                    <label for="password_confirmation"><b>Confirm Password</b></label>
                     <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
+                    @error('password_confirmation')
+                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                    @enderror
                 </div>
                 <div class="form-check">
                     <a href="{{route('login')}}"> <b>Already registered? </b> </a>
