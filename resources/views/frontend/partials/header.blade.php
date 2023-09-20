@@ -4,7 +4,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">                     
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/')}}">Home</a>
                 </li>
@@ -37,11 +37,6 @@
                     <a href="{{route('register')}}" class="ml-4 btn btn-dark mt-1 btn-sm">register</a>
                 </li>
             </div>
-            {{-- <div class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="components.html" class="ml-4 btn btn-dark mt-1 btn-sm">Components</a>
-                </li>
-            </div> --}}
         </div>
     </div>
 </nav>

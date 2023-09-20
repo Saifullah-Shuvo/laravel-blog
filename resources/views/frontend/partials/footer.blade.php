@@ -1,3 +1,76 @@
+<!-- instagram wrapper -->
+<div class="instagram-wrapper mt-5">
+    <div class="ig-id">
+        <a href="javascript:void(0)">Follow @joe_mitchell On Instagram</a>
+    </div>
+    <a href="javascript:void(0)" class="insta-item">
+        <img src="assets/imgs/insta-1.jpg" alt="" class="w-100">
+        <div class="overlay">
+            <span>
+                <i class="ti-heart"></i> 23
+            </span>
+            <span>
+                <i class="ti-comment"></i> 12
+            </span>
+        </div>
+    </a>
+    <a href="javascript:void(0)" class="insta-item">
+        <img src="assets/imgs/insta-2.jpg" alt="" class="w-100">
+        <div class="overlay">
+            <span>
+                <i class="ti-heart"></i> 23
+            </span>
+            <span>
+                <i class="ti-comment"></i> 12
+            </span>
+        </div>
+    </a>
+    <a href="javascript:void(0)" class="insta-item">
+        <img src="assets/imgs/insta-3.jpg" alt="" class="w-100">
+        <div class="overlay">
+            <span>
+                <i class="ti-heart"></i> 23
+            </span>
+            <span>
+                <i class="ti-comment"></i> 12
+            </span>
+        </div>
+    </a>
+    <a href="javascript:void(0)" class="insta-item">
+        <img src="assets/imgs/insta-4.jpg" alt="" class="w-100">
+        <div class="overlay">
+            <span>
+                <i class="ti-heart"></i> 23
+            </span>
+            <span>
+                <i class="ti-comment"></i> 12
+            </span>
+        </div>
+    </a>
+    <a href="javascript:void(0)" class="insta-item">
+        <img src="assets/imgs/insta-5.jpg" alt="" class="w-100">
+        <div class="overlay">
+            <span>
+                <i class="ti-heart"></i> 23
+            </span>
+            <span>
+                <i class="ti-comment"></i> 12
+            </span>
+        </div>
+    </a>
+    <a href="javascript:void(0)" class="insta-item">
+        <img src="assets/imgs/insta-6.jpg" alt="" class="w-100">
+        <div class="overlay">
+            <span>
+                <i class="ti-heart"></i> 23
+            </span>
+            <span>
+                <i class="ti-comment"></i> 12
+            </span>
+        </div>
+    </a>
+</div>
+<!-- instagram wrapper -->
 <footer class="page-footer">
     <div class="container">
         <div class="row align-items-center justify-content-between">
@@ -12,8 +85,8 @@
                     <a href="javascript:void(0)" class="font-weight-bold text-muted mr-4"><i class="ti-instagram pr-1"></i> 123,023</a>
                     <a href="javascript:void(0)" class="font-weight-bold text-muted mr-4"><i class="ti-youtube pr-1"></i> 231,043</a>
                 </div>
-            </div>  
+            </div>
         </div>
-        <p class="border-top mb-0 mt-4 pt-3 small">&copy; <script>document.write(new Date().getFullYear())</script>, JoeBlog Created By <a href="https://www.devcrud.com" class="text-muted font-weight-bold" target="_blank">DevCrud.</a>  All rights reserved </p> 
-    </div>      
+        <p class="border-top mb-0 mt-4 pt-3 small">&copy; <script>document.write(new Date().getFullYear())</script>, JoeBlog Created By <a href="https://www.devcrud.com" class="text-muted font-weight-bold" target="_blank">DevCrud.</a>  All rights reserved </p>
+    </div>
 </footer>

@@ -1,4 +1,3 @@
-
 @extends('frontend.master')
 
 @section('title')
