@@ -1,19 +1,22 @@
 <div class="border-end bg-white" id="sidebar-wrapper">
     <div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="{{route('dashboard')}}">Dashboard</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="#!">
-            <i class="bi bi-cloud-plus-fill"></i> Add blog
+        <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="{{route('create.posts')}}">
+            <i class="bi bi-cloud-plus-fill"></i> Create blog
+        </a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="{{route('user.posts')}}">
+            <i class="bi bi-cloud-plus-fill"></i> All blogs
         </a>
         <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                Blog Manage
             </a>
 
             <!-- Dropdown Menu -->
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action 1</a>
-                <a class="dropdown-item" href="#">Action 2</a>
-                <a class="dropdown-item" href="#">Action 3</a>
+                <a class="dropdown-item" href="{{route('create.posts')}}">Create blog</a>
+                <a class="dropdown-item" href="{{route('user.posts')}}">All blogs</a>
+                {{-- <a class="dropdown-item" href="{{route('edit.posts')}}">Edit blogs</a> --}}
             </div>
         </div>
         <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="#!">Overview</a>

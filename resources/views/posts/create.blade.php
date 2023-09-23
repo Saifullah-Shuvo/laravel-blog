@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Steveblog | Dashboard</title>
     {{-- User sidebar CSS --}}
-    <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 </head>
+
 <body>
     <x-app-layout>
         <div class="container p-1 text-center bg-info text-white">
@@ -23,20 +25,34 @@
             <hr>
             @include('frontend.userdashboard.sidebar')
             <!-- Page content wrapper-->
-            <div id="page-content-wrapper">
+            <div id="page-content-wrapper" class="w-100">
                 <!-- Top navigation-->
                 <!-- Page content-->
-                <div class="container-fluid">
-                    <h1 class="mt-4">Create Post</h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>
-                        Make sure to keep all page content within the
-                        <code>#page-content-wrapper</code>
-                        . The top navbar is optional, and just for demonstration. Just create an element with the
-                        <code>#sidebarToggle</code>
-                        ID which will toggle the menu when clicked.
-                    </p>
+
+                <div class="container mt-5">
+                    <h1>Create a Blog Post</h1>
+                    <form method="POST" action="{{route('store.posts')}}" >
+                        @csrf
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" id="title"
+                                placeholder="Enter the title of your blog post" required>
+                                @error('title')
+                                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                                @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="8" placeholder="Write the content of your blog post" required></textarea>
+                            @error('content')
+                            <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                        @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary">Publish</button>
+                    </form>
+
                 </div>
+
             </div>
         </div>
     </x-app-layout>
@@ -45,4 +61,5 @@
     <!-- Core theme JS-->
     <script src="usersidebar/js/scripts.js"></script>
 </body>
+
 </html>

@@ -18,17 +18,17 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
+        $request->validate([
+            'title' => 'required|min:5',
             'content' => 'required',
         ]);
 
         $post = new Post();
-        $post->title = $validatedData['title'];
-        $post->content = $validatedData['content'];
+        $post->title = $request->title;
+        $post->content = $request->content;
         $post->save();
 
-        return redirect('/posts');
+        return redirect('/posts')->with('success','Post Createde Successfully');
     }
 
     public function edit($id){
