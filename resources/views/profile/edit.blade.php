@@ -1,26 +1,27 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+    <div class="container p-1 text-center bg-info text-white">
+        <h4>
+            {{ Auth::user()->name }}{{ __('\'s Profile') }}
+        </h4>
+    </div>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <hr><hr>
+        @include('frontend.userdashboard.sidebar')
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Page content-->
+            <div class="container-fluid m-1">
+                <div class="container-fluid mt-5">
                     @include('profile.partials.update-profile-information-form')
                 </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+                <hr>
+                <div class="container-fluid mt-5">
                     @include('profile.partials.update-password-form')
                 </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+                <hr>
+                <div class="container-fluid mt-5">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>

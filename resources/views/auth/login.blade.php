@@ -58,7 +58,7 @@ Login
                 <div class="form-check">
                     @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}"> <b>Forgot your password? </b> </a>
-                    @endif 
+                    @endif
                     <button type="submit" class="btn btn-dark">LOG IN</button>
                 </div>
             </form>
