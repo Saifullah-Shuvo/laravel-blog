@@ -38,6 +38,7 @@
                                 <th col-md-2>Category</th>
                                 <th col-md-3>Title</th>
                                 <th col-md-4>Content</th>
+                                <th col-md-2>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,10 +48,24 @@
                             @foreach ($posts as $post)
                             <tr>
                                 <td col-md-1>{{$serialNumber ++}}</td>
-                                <td col-md-2><img src="{{asset($post->image)}}" alt="Blog Image" class="img-thumbnail"></td>
+                                <td col-md-2><img src="{{asset('storage/'. $post->image)}}" alt="Blog Image" class="img-thumbnail"></td>
                                 <td col-md-2>Category</td>
                                 <td col-md-3><h6>{{$post->title}}</h6></td>
                                 <td col-md-4>{{$post->content}}</td>
+                                <td col-md-2>
+                                    <a href="{{ route('edit.posts', ['id' => $post->id]) }}">
+                                        <button type="button" class="btn btn-warning">
+                                            Edit
+                                        </button>
+                                    </a>
+                                    
+                                    <!-- Delete Button -->
+                                    <a href=" {{route('delete.posts', ['id' => $post->id]) }}">
+                                        <button type="button" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                             <!-- Add more rows as needed -->

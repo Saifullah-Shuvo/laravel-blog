@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::all();
+        $user= auth()->user();
+        $posts = Post::where('user_id', $user->id)->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -27,11 +29,21 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->image = $request->file('image')->store('images','public');
+        $post->image = $request->file('image')->store('uploads','public');
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/posts')->with('success','Post Createde Successfully');
     }
+
+    // public function show($id)
+    // {
+    //     // Retrieve a specific post by its ID
+    //     $post = Post::findOrFail($id);
+
+    //     // Show the post details
+    //     return view('posts.show', compact('post'));
+    // }
 
     public function edit($id){
         $post = Post::findOrFail($id);
@@ -39,14 +51,16 @@ class PostController extends Controller
     }
 
     public function update(Request $request, $id){
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
         ]);
 
         $post = Post::findOrFail($id);
-        $post->title = $validatedData['title'];
-        $post->content = $validatedData['content'];
+        $post->title = $request->title;
+        $post->title = $request->content;
+        $post->image = $request->file('image')->store('uploads','public');
+        
         $post->save();
 
         return redirect('/posts')->with('success','Post Updated Successfully');

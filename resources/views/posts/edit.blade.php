@@ -26,7 +26,41 @@
             <div id="page-content-wrapper" class="w-100">
                 <!-- Top navigation-->
                 <!-- Page content-->
-                
+                <div class="container mt-5">
+                    <h1 class="text-center">Edit a Blog Post</h1>
+                    <form method="post" action="{{ route('update.posts', ['id' => $post->id]) }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" id="title"
+                                value="{{$post->title}}" required>
+                                @error('title')
+                                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                                @enderror
+                        </div>
+                        {{-- @dd($post) --}}
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control" name="image" id="image"required>
+                                @error('image')
+                                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                                @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image Preview</label>
+                            <img src="{{asset('storage/'. $post->image)}}" alt="Blog Image" class="img-thumbnail">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="8" required>{{$post->content}}</textarea>
+                            @error('content')
+                            <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                            @enderror
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
             </div>
         </div>
     </x-app-layout>
