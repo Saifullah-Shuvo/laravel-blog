@@ -7,6 +7,9 @@
         <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="{{route('user.posts')}}">
             <i class="bi bi-cloud-plus-fill"></i> All blogs
         </a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" href="{{route('user.posts')}}">
+            <i class="bi bi-cloud-plus-fill"></i> Edit blog
+        </a>
         <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Blog Manage
@@ -16,6 +19,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="{{route('create.posts')}}">Create blog</a>
                 <a class="dropdown-item" href="{{route('user.posts')}}">All blogs</a>
+                <a class="dropdown-item" href="">Edit blogs</a>
                 {{-- <a class="dropdown-item" href="{{route('edit.posts')}}">Edit blogs</a> --}}
             </div>
         </div>

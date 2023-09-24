@@ -21,11 +21,13 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|min:5',
             'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->image = $request->file('image')->store('images','public');
         $post->save();
 
         return redirect('/posts')->with('success','Post Createde Successfully');

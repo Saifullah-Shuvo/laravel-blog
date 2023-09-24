@@ -28,17 +28,34 @@
             <div id="page-content-wrapper" class="w-100">
                 <!-- Top navigation-->
                 <!-- Page content-->
-                <div class="container mt-5">
-                    <div class="row">
-                        @foreach ($posts as $post)
-                        <div class="col-md-8">
-                                <h1>{{$post->title}}</h1>
-                            {{-- <p>Published on September 23, 2023 by John Doe</p> --}}
-                            {{-- <img src="post-image.jpg" alt="Post Image" class="img-fluid"> --}}
-                                <p>{{$post->content}}</p>
-                        </div>
-                        @endforeach
-                    </div>
+                <div class="container">
+                    <h1 class="text-center">All blog posts</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th col-md-1>ID</th>
+                                <th col-md-2>Image</th>
+                                <th col-md-2>Category</th>
+                                <th col-md-3>Title</th>
+                                <th col-md-4>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $serialNumber = 1;
+                            @endphp
+                            @foreach ($posts as $post)
+                            <tr>
+                                <td col-md-1>{{$serialNumber ++}}</td>
+                                <td col-md-2><img src="{{asset($post->image)}}" alt="Blog Image" class="img-thumbnail"></td>
+                                <td col-md-2>Category</td>
+                                <td col-md-3><h6>{{$post->title}}</h6></td>
+                                <td col-md-4>{{$post->content}}</td>
+                            </tr>
+                            @endforeach
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
