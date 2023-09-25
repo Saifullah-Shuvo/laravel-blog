@@ -10,6 +10,12 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .custom-image{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,11 +50,12 @@
                         <tbody>
                             @php
                                 $serialNumber = 1;
+
                             @endphp
                             @foreach ($posts as $post)
                             <tr>
                                 <td col-md-1>{{$serialNumber ++}}</td>
-                                <td col-md-2><img src="{{asset('storage/'. $post->image)}}" alt="Blog Image" class="img-thumbnail"></td>
+                                <td col-md-2><img src="{{asset('postimage/'.$post->image)}}" alt="Blog Image" class="img-thumbnail custom-image"></td>
                                 <td col-md-2>Category</td>
                                 <td col-md-3><h6>{{$post->title}}</h6></td>
                                 <td col-md-4>{{$post->content}}</td>
@@ -58,7 +65,7 @@
                                             Edit
                                         </button>
                                     </a>
-                                    
+
                                     <!-- Delete Button -->
                                     <a href=" {{route('delete.posts', ['id' => $post->id]) }}">
                                         <button type="button" class="btn btn-danger">

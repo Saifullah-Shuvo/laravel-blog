@@ -9,6 +9,12 @@
     <link rel="icon" type="image/x-icon" href="{{asset('assets/favicon.ico')}}" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .custom-image{
+            width: 250px;
+            height: 250px;
+        }
+    </style>
 </head>
 <body>
     <x-app-layout>
@@ -41,14 +47,14 @@
                         {{-- @dd($post) --}}
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" class="form-control" name="image" id="image"required>
+                            <input type="file" class="form-control" name="image" id="image" required>
                                 @error('image')
                                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                 @enderror
                         </div>
                         <div class="form-group">
                             <label for="image">Image Preview</label>
-                            <img src="{{asset('storage/'. $post->image)}}" alt="Blog Image" class="img-thumbnail">
+                            <img src="{{asset('postimage/'.$post->image)}}" alt="Blog Image" class="img-thumbnail custom-image">
                         </div>
                         <div class="form-group">
                             <label for="content">Content</label>
@@ -57,7 +63,7 @@
                             <div class="error"><span class="text-danger">{{ $message }}</span></div>
                             @enderror
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>

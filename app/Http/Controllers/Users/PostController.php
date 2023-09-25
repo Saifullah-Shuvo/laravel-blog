@@ -26,14 +26,22 @@ class PostController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $imageName = '';
+
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->image = $request->file('image')->store('uploads','public');
+        //image store in public folder
+            $image = $request->image;
+            // $imageName = time().'.'.$image->getClientOriginalExtension();
+            $imageName = uniqid().'.'.$image->getClientOriginalExtension();
+            $request->image->move('postimage',$imageName);
+        //end
+        $post->image = $imageName;
         $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('/posts')->with('success','Post Createde Successfully');
+        return redirect('/posts')->with('success','Post Created Successfully');
     }
 
     // public function show($id)
@@ -52,15 +60,26 @@ class PostController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|min:5',
             'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $imageName = '';
 
         $post = Post::findOrFail($id);
         $post->title = $request->title;
-        $post->title = $request->content;
-        $post->image = $request->file('image')->store('uploads','public');
-        
+        $post->content = $request->content;
+        //image store in public folder
+            if ($request->image){
+                $image = $request->image;
+                // $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                $imageName = uniqid().'.'.$image->getClientOriginalExtension();
+                $request->image->move('postimage',$imageName);
+            }
+        //end
+        $post->image = $imageName;
+
         $post->save();
 
         return redirect('/posts')->with('success','Post Updated Successfully');
@@ -68,6 +87,17 @@ class PostController extends Controller
 
     public function destroy($id){
         $post = Post::findOrFail($id);
+        //delete image
+        // $image_path = public_path('postimage/'.$post->image);
+        // if(file_exists($image_path)){
+        //     //unlink($image_path);
+        //     Storage::delete($image_path);
+        //     //$image_path->delete();
+        // }
+        if(Storage::exists(public_path('postimage/'.$post->image))){
+            Storage::delete(public_path('postimage'.$post->image));
+        }
+        //end delete image
         $post->delete();
 
         return redirect('/posts')->with('success','Post Deleted Successfully');
