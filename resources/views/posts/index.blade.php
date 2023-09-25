@@ -68,7 +68,7 @@
 
                                     <!-- Delete Button -->
                                     <a href=" {{route('delete.posts', ['id' => $post->id]) }}">
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger" onclick="return myFunction();">
                                             Delete
                                         </button>
                                     </a>
@@ -86,6 +86,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="usersidebar/js/scripts.js"></script>
+    <script>
+        function myFunction() {
+            if(!confirm("Are You Sure to delete this"))
+            event.preventDefault();
+        }
+       </script>
 </body>
 
 </html>
