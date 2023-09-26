@@ -31,7 +31,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [AdminController::class, 'index']) ->name('admin.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -50,3 +49,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{id}', [PostController::class, 'update'])->name('update.posts');
     Route::get('/posts/{id}', [PostController::class, 'destroy'])->name('delete.posts');
 });
+
