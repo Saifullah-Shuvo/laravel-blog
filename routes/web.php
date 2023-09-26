@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\PostController;
-use App\Http\Controllers\AdminController;
 
 
 /*
@@ -31,8 +30,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [AdminController::class, 'index']) ->name('admin.dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -40,6 +37,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//Admin Auth
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+
+require __DIR__.'/adminauth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/posts', [PostController::class, 'index'])->name('user.posts');
@@ -50,3 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{id}', [PostController::class, 'update'])->name('update.posts');
     Route::get('/posts/{id}', [PostController::class, 'destroy'])->name('delete.posts');
 });
+
+
+
