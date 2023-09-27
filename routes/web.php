@@ -30,7 +30,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [AdminController::class, 'index']) ->name('admin.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,7 +41,7 @@ require __DIR__.'/auth.php';
 
 //Admin Auth
 Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+    return view('admin.master');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
 require __DIR__.'/adminauth.php';
