@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\PostController;
 
@@ -43,6 +44,12 @@ require __DIR__.'/auth.php';
 Route::get('/admin/dashboard', function () {
     return view('admin.master');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+
+Route::middleware(['auth:admin','verified'])->group(function () {
+    Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::delete('admin/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
+});
 
 require __DIR__.'/adminauth.php';
 

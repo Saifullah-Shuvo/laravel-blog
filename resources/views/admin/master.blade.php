@@ -42,7 +42,9 @@
             <div class="main-panel">
 
                 <div class="content-wrapper">
-                    @yield('content')
+                    <div class="row">
+                        @yield('content')
+                    </div>
                 </div>
 
                 <!-- content-wrapper ends -->
