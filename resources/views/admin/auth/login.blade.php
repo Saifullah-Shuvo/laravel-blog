@@ -1,73 +1,98 @@
-@extends('frontend.master')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title')
-Login
-@endsection
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Star Admin2 </title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{{asset('admin/vendors/feather/feather.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/vendors/ti-icons/css/themify-icons.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/vendors/typicons/typicons.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/vendors/simple-line-icons/css/simple-line-icons.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/vendors/css/vendor.bundle.base.css')}}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{asset('admin/css/vertical-layout-light/style.css')}}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+</head>
 
-@push('css')
-
-@endpush
-
-@section('content')
-
-<!-- Page Header -->
-<header class="header header-mini">
-    <div class="header-title">Login</div>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Login</li>
-        </ol>
-    </nav>
-</header>
-<!-- End Of Page Header -->
-<section class="container">
-    <div class="page-container">
-        <div class="page-content">
-            <form method="POST" action="{{route('admin.login')}}">
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img src="{{asset('admin/images/logo.svg')}}" alt="logo">
+              </div>
+              <h4>Hello! let's get started</h4>
+              <h6 class="fw-light">Sign in to continue.</h6>
+              <form class="pt-3" method="POST" action="{{route('admin.login')}}">
                 @csrf
                 <div class="form-group">
-                    {{-- @if ($errors->any())
-                        <div class="text-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif --}}
-                    <label for="name"><b>Email</b></label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
-                    @error('email')
+                  <input type="email" name="email" id="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" required>
+                  @error('email')
                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
-                    @enderror
+                  @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password"><b>Password</b></label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" required>
-                    @error('password')
+                  <input type="password" name="password" id="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
+                  @error('password')
                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
-                    @enderror
+                  @enderror
                 </div>
-                <div class="form-group">
-                    <label for="remember_me">
-                        <input type="checkbox" class="form-check-input" name="remember" id="remember_me">
-                        <span><b>Remember me</b></span>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                        SIGN IN
+                    </button>
+                </div>
+                {{-- <div class="my-2 d-flex justify-content-between align-items-center">
+                  <div class="form-check">
+                    <label class="form-check-label text-muted">
+                      <input type="checkbox" class="form-check-input">
+                      Keep me signed in
                     </label>
+                  </div>
+                  <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="form-check">
-                    @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}"> <b>Forgot your password? </b> </a>
-                    @endif
-                    <button type="submit" class="btn btn-dark">LOG IN</button>
+                <div class="mb-2">
+                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                    <i class="ti-facebook me-2"></i>Connect using facebook
+                  </button>
                 </div>
-            </form>
+                <div class="text-center mt-4 fw-light">
+                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                </div> --}}
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
+      <!-- content-wrapper ends -->
     </div>
-</section>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{{asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{{asset('admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{{asset('admin/js/off-canvas.js')}}"></script>
+  <script src="{{asset('admin/js/hoverable-collapse.js')}}"></script>
+  <script src="{{asset('admin/js/template.js')}}"></script>
+  <script src="{{asset('admin/js/settings.js')}}"></script>
+  <script src="{{asset('admin/js/todolist.js')}}"></script>
+  <!-- endinject -->
+</body>
 
-@endsection
-
-@push('js')
-
-@endpush
+</html>
