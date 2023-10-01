@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\PostController;
+use App\Http\Controllers\Admin\AdminController;
 
 
 /*
@@ -62,3 +63,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{id}', [PostController::class, 'update'])->name('update.posts');
     Route::get('/posts/{id}', [PostController::class, 'destroy'])->name('delete.posts');
 });
+
+
+Route::middleware(['auth:admin','verified'])->group(function () {
+    Route::get('admin/posts', [AdminController::class, 'index'])->name('admin.posts');
+    Route::get('admin/posts/create', [AdminController::class, 'create'])->name('admin.create.posts');
+    // Route::post('/posts', [AdminController::class, 'store'])->name('store.posts');
+    // //Route::get('/posts/{id}', [PostController::class, 'show']);
+    // Route::get('/posts/{id}/edit', [AdminController::class, 'edit'])->name('edit.posts');
+    // Route::post('/posts/{id}', [AdminController::class, 'update'])->name('update.posts');
+    // Route::get('/posts/{id}', [AdminController::class, 'destroy'])->name('delete.posts');
+});
+
+

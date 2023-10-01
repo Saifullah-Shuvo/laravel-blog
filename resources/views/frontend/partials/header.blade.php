@@ -33,12 +33,28 @@
                 </li>
             </ul>
             <div class="navbar-nav ml-auto">
+                {{-- @if (Route::has(login)) --}}
+
+                @auth     
+                <li class="nav-item">
+                    <a href="{{route('dashboard')}}" class="ml-4 btn btn-dark mt-1 btn-sm">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="ml-4 btn btn-dark mt-1 btn-sm text-danger" onclick="event.preventDefault();
+                        this.closest('form').submit();">Logout</a>
+                    </form>
+                </li>
+                @else
                 <li class="nav-item">
                     <a href="{{route('login')}}" class="ml-4 btn btn-dark mt-1 btn-sm">login</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('register')}}" class="ml-4 btn btn-dark mt-1 btn-sm">register</a>
                 </li>
+                @endauth
+                {{-- @endif --}}
             </div>
         </div>
     </div>

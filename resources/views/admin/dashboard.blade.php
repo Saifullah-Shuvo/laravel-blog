@@ -1,13 +1,4 @@
-@extends('admin.master')
-
-@section('title')
-    Admin Dashboard
-@endsection
-
-@push('css')
-@endpush
-
-@section('content')
+<div class="row">
     <div class="col-sm-12">
         <div class="home-tab">
             <div class="d-sm-flex align-items-center justify-content-between border-bottom">
@@ -744,7 +735,5 @@
             </div>
         </div>
     </div>
-@endsection
+</div>
 
-@push('js')
-@endpush

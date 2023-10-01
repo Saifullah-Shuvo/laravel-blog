@@ -5,7 +5,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>SteveBlog | @yield('title')</title>
+        <title>SteveBlog | Dashboard</title>
         <!-- plugins:css -->
         <link rel="stylesheet" href="{{asset('admin/vendors/feather/feather.css')}}">
         <link rel="stylesheet" href="{{asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -42,9 +42,7 @@
                 <div class="main-panel">
 
                     <div class="content-wrapper">
-                        <div class="row">
-                            @yield('content')
-                        </div>
+                        @include('admin.dashboard')
                     </div>
 
                     <!-- content-wrapper ends -->
