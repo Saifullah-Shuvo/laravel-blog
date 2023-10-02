@@ -47,13 +47,10 @@
                         <div class="col-md-10 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Default form</h4>
-                                    <p class="card-description">
-                                        Basic form layout
-                                    </p>
+                                    <h4 class="card-title text-xl-center">Create post</h4>
                                     <form class="forms-sample">
                                         <div class="form-group">
-                                            <label for="exampleInputUsername1">Username</label>
+                                            <label for="exampleInputUsername1">Post Title</label>
                                             <input type="text" class="form-control" id="exampleInputUsername1"
                                                 placeholder="Username">
                                         </div>
@@ -72,14 +69,8 @@
                                             <input type="password" class="form-control"
                                                 id="exampleInputConfirmPassword1" placeholder="Password">
                                         </div>
-                                        <div class="form-check form-check-flat form-check-primary">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input">
-                                                Remember me
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                        <button class="btn btn-light">Cancel</button>
+                                        <button type="submit" class="btn btn-primary me-2 justify-content-center">Create</button>
+
                                     </form>
                                 </div>
                             </div>
