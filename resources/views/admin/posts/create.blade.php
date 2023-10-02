@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('admin/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     @stack('css')
 </head>
 
@@ -48,28 +49,31 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title text-xl-center">Create post</h4>
-                                    <form class="forms-sample">
+                                    <form class="forms-sample" method="POST" action="{{route('admin.store.posts')}}" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group">
-                                            <label for="exampleInputUsername1">Post Title</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1"
-                                                placeholder="Username">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" name="title" id="title"
+                                                placeholder="Enter the title of your blog post" required>
+                                                @error('title')
+                                                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                                                @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                                placeholder="Email">
+                                            <label for="image">Image</label>
+                                            <input type="file" class="form-control" name="image" id="image">
+                                                @error('image')
+                                                    <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                                                @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                                placeholder="Password">
+                                            <label for="content">Content</label>
+                                            <textarea class="form-control" id="content" name="content" rows="8" placeholder="Write the content of your blog post" required></textarea>
+                                            @error('content')
+                                            <div class="error"><span class="text-danger">{{ $message }}</span></div>
+                                        @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                                            <input type="password" class="form-control"
-                                                id="exampleInputConfirmPassword1" placeholder="Password">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary me-2 justify-content-center">Create</button>
+                                        <button type="submit" class="btn btn-primary me-2 justify-content-center">Publish</button>
 
                                     </form>
                                 </div>
@@ -110,6 +114,9 @@
     <script src="{{ asset('admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     @stack('js')
 </body>
 

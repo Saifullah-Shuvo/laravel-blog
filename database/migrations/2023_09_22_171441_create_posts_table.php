@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('image');
+            $table->string('post_status')->default('active');
+            $table->string('name');
+            $table->string('user_type');
             $table->timestamps();
         });
     }

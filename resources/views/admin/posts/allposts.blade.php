@@ -47,7 +47,7 @@
                         <div class="col-lg-10 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title text-sm-center">Basic Table</h4>
+                                    <h4 class="card-title text-sm-center">All Posts</h4>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>

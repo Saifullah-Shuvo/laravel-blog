@@ -31,6 +31,11 @@ class PostController extends Controller
 
         $imageName = '';
 
+        $user = Auth()->user();
+        $userid = $user->id;
+        $name = $user->name;
+        $usertype = $user->user_type;
+
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
@@ -42,6 +47,12 @@ class PostController extends Controller
         //end
         $post->image = $imageName;
         $post->user_id = auth()->user()->id;
+
+        $post->post_status = 'inactive';
+        $post->user_id = $userid;
+        $post->user_type = $usertype;
+        $post->author_name = $name;
+
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created Successfully');

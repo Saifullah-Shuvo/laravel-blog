@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:admin','verified'])->group(function () {
     Route::get('admin/posts', [AdminController::class, 'index'])->name('admin.posts');
     Route::get('admin/posts/create', [AdminController::class, 'create'])->name('admin.create.posts');
-    // Route::post('/posts', [AdminController::class, 'store'])->name('store.posts');
+    Route::post('admin/posts/store', [AdminController::class, 'store'])->name('admin.store.posts');
     // //Route::get('/posts/{id}', [PostController::class, 'show']);
     // Route::get('/posts/{id}/edit', [AdminController::class, 'edit'])->name('edit.posts');
     // Route::post('/posts/{id}', [AdminController::class, 'update'])->name('update.posts');
