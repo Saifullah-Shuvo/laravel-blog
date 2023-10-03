@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function index(){
-        $user = auth()->user();
-        $posts = Post::get();
-        return view('admin.posts.allposts',compact('posts'));
+        // $user = auth()->user();
+        $users = Post::where('user_type','=','user')-> latest()->get();
+        $admins = Post::where('user_type','=','admin')-> latest()->get();
+        return view('admin.posts.allposts',compact('users','admins'));
     }
 
     public function create()

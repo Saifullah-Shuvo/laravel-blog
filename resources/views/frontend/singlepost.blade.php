@@ -10,44 +10,41 @@ Single Page
 @endpush
 
 @section('content')
+    
     <section class="container">
         <div class="page-container">
             <div class="page-content">
                 <div class="card">
                     <div class="card-header pt-0">
-                        <h3 class="card-title mb-4">Voluptates Corporis Placeat</h3>
+                        <h3 class="card-title mb-4">{{$post->title}}</h3>
                         <div class="blog-media mb-4">
-                            <img src="assets/imgs/blog-6.jpg" alt="" class="w-100">
+                            <img src="/postimage/{{$post->image}}" alt="" class="w-100">
                             <a href="#" class="badge badge-primary">#Salupt</a>
                         </div>
                         <small class="small text-muted">
-                            <a href="#" class="text-muted">BY Admin</a>
+                            <a href="#" class="text-muted">POST BY: {{$post->author_name}}</a>
                             <span class="px-2">·</span>
-                            <span>January 24 2019</span>
+                            <span>{{$post->updated_at}}</span>
                             <span class="px-2">·</span>
                             <a href="#" class="text-muted">32 Comments</a>
                         </small>
                     </div>
                     <div class="card-body border-top">
-                        <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos saepe dolores et nostrum porro odit reprehenderit animi, est ratione fugit aspernatur ipsum. Nostrum placeat hic saepe voluptatum dicta ipsum beatae.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta mollitia assumenda quasi itaque, et doloremque voluptatem, praesentium cumque aperiam. Nobis aut expedita recusandae aliquam sapiente perferendis, perspiciatis quasi, vel, fugit eligendi aliquid. Minus, odit repellendus eligendi. Esse illo assumenda dolore sed.</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, obcaecati veritatis enim earum neque, eveniet quasi commodi alias, adipisci magnam, ab praesentium dolore culpa!
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eius nam pariatur necessitatibus, enim, consectetur, esse sint qui sed nisi unde vero! Ratione dolore quod perferendis, non ad et, tempora quisquam, iusto nesciunt rem ut excepturi eligendi nam? Repellendus itaque hic fuga ducimus asperiores dolorem dolores, aliquid quaerat temporibus ratione doloribus eius nihil expedita adipisci in quis modi unde repudiandae iusto reiciendis ipsa deleniti accusamus maxime, dolor animi? Animi ut quia natus in aliquid error quaerat, adipisci quisquam labore ipsa sapiente illo quidem, blanditiis doloribus voluptas et nam, omnis? Inventore minima ipsa non porro fugit, reprehenderit voluptates officiis.</p>
+                        <p class="my-3">{{$post->content}}</p>
                     </div>
 
                     <div class="card-footer">
                         <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Comments 4</a></h6>
                         <hr>
                         <div class="media">
-                            <img src="assets/imgs/avatar-1.jpg" class="mr-3 thumb-sm rounded-circle" alt="...">
+                            <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">Janice Wilder</h6>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
                                 <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
                                 <div class="media mt-5">
                                     <a class="mr-3" href="#">
-                                    <img src="assets/imgs/avatar.jpg" class="thumb-sm rounded-circle" alt="...">
+                                    <img src="{{asset('assets/imgs/avatar.jpg')}}" class="thumb-sm rounded-circle" alt="...">
                                     </a>
                                     <div class="media-body align-items-center">
                                         <h6 class="mt-0">Joe Mitchell</h6>
@@ -59,7 +56,7 @@ Single Page
                             </div>
                         </div>
                         <div class="media mt-5">
-                            <img src="assets/imgs/avatar-2.jpg" class="mr-3 thumb-sm rounded-circle" alt="...">
+                            <img src="{{asset('assets/imgs/avatar-2.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">Crosby Meadows</h6>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
@@ -67,7 +64,7 @@ Single Page
                             </div>
                         </div>
                         <div class="media mt-4">
-                            <img src="assets/imgs/avatar-3.jpg" class="mr-3 thumb-sm rounded-circle" alt="...">
+                            <img src="{{asset('assets/imgs/avatar-3.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">Jean Wiley</h6>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
@@ -106,7 +103,7 @@ Single Page
                         <div class="card mb-5">
                             <div class="card-header p-0">
                                 <div class="blog-media">
-                                    <img src="assets/imgs/blog-2.jpg" alt="" class="w-100">
+                                    <img src="{{asset('assets/imgs/blog-2.jpg')}}" alt="" class="w-100">
                                     <a href="#" class="badge badge-primary">#Placeat</a>
                                 </div>
                             </div>
@@ -123,7 +120,7 @@ Single Page
                         <div class="card mb-5">
                             <div class="card-header p-0">
                                 <div class="blog-media">
-                                    <img src="assets/imgs/blog-3.jpg" alt="" class="w-100">
+                                    <img src="{{asset('assets/imgs/blog-3.jpg')}}" alt="" class="w-100">
                                     <a href="#" class="badge badge-primary">#dolores</a>
                                 </div>
                             </div>
@@ -140,7 +137,7 @@ Single Page
                         <div class="card mb-5">
                             <div class="card-header p-0">
                                 <div class="blog-media">
-                                    <img src="assets/imgs/blog-4.jpg" alt="" class="w-100">
+                                    <img src="{{asset('assets/imgs/blog-4.jpg')}}" alt="" class="w-100">
                                     <a href="#" class="badge badge-primary">#amet</a>
                                 </div>
                             </div>

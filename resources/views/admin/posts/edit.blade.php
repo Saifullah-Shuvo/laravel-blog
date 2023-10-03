@@ -23,6 +23,12 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .image-size{
+            height: 300px;
+            width: 500px;
+        }
+    </style>
     @stack('css')
 </head>
 
@@ -54,7 +60,7 @@
                         <div class="col-md-10 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title text-xl-center">Create post</h4>
+                                    <h4 class="card-title text-xl-center">Edit post</h4>
                                     <form class="forms-sample" method="POST" action="{{route('admin.update.posts',['id' => $post->id])}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
@@ -71,6 +77,10 @@
                                                 @error('image')
                                                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                                 @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image">Image Preview</label>
+                                            <img src="{{asset('postimage/'.$post->image)}}" alt="Blog Image" class="img-thumbnail custom-image image-size">
                                         </div>
                                         <div class="form-group">
                                             <label for="content">Content</label>

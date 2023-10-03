@@ -61,6 +61,7 @@
                                 <th col-md-2>Category</th>
                                 <th col-md-3>Title</th>
                                 <th col-md-4>Content</th>
+                                <th col-md-2>Status</th>
                                 <th col-md-2>Action</th>
                             </tr>
                         </thead>
@@ -76,6 +77,7 @@
                                 <td col-md-2>Category</td>
                                 <td col-md-3><h6>{{$post->title}}</h6></td>
                                 <td col-md-4>{{$post->content}}</td>
+                                <td col-md-4>{{$post->post_status}}</td>
                                 <td col-md-2>
                                     <a href="{{ route('edit.posts', ['id' => $post->id]) }}">
                                         <button type="button" class="btn btn-warning">

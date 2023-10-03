@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\PostController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -18,15 +19,23 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.bloghome');
-});
-Route::get('/singlepost', function () {
-    return view('frontend.singlepost');
-})->name('singlepost');
-Route::get('/component', function () {
-    return view('frontend.component');
-})->name('component');
+// Route::get('/', function () {
+//     return view('frontend.bloghome');
+// });
+
+// Route::get('/singlepost', function () {
+    //     return view('frontend.singlepost');
+    // })->name('singlepost');
+    
+    // Route::get('/component', function () {
+        //     return view('frontend.component');
+        // })->name('component');
+
+Route::get('/',[HomeController::class, 'index'])->name('blog.home');
+Route::get('/post/details/{id}',[HomeController::class, 'details'])->name('blog.post.details');
+
+Route::get('/accept_post/{id}',[HomeController::class, 'accept'])->name('blog.post.accept');
+Route::get('/reject_post/{id}',[HomeController::class, 'reject'])->name('blog.post.reject');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -69,7 +78,7 @@ Route::middleware(['auth:admin','verified'])->group(function () {
     Route::get('admin/posts', [AdminController::class, 'index'])->name('admin.posts');
     Route::get('admin/posts/create', [AdminController::class, 'create'])->name('admin.create.posts');
     Route::post('admin/posts/store', [AdminController::class, 'store'])->name('admin.store.posts');
-    //Route::get('/posts/{id}', [PostController::class, 'show']);
+    // Route::get('admin/posts/{id}', [AdminController::class, 'show'])->name('admin.show.posts');
     Route::get('admin/posts/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit.posts');
     Route::post('admin/posts/{id}', [AdminController::class, 'update'])->name('admin.update.posts');
     Route::get('admin/posts/{id}', [AdminController::class, 'destroy'])->name('admin.delete.posts');

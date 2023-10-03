@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('admin/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     @stack('css')
 </head>
 
@@ -41,13 +42,26 @@
             <!-- partial -->
 
             <div class="main-panel">
-
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">x</button>
+                        {{session()->get('success')}}
+                    </div>
+                @endif
+                @if(session()->has('danger'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">x</button>
+                        {{session()->get('danger')}}
+                    </div>
+                @endif
                 <div class="content-wrapper">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title text-sm-center">All Posts</h4>
+                                    <h4 class="card-title text-sm-center">Admin Posts</h4>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
@@ -55,36 +69,89 @@
                                                     <th>Title</th>
                                                     <th>Description</th>
                                                     <th>Image</th>
+                                                    <th>Status</th>
                                                     <th>Posted By</th>
                                                     <th>User type</th>
-                                                    <th class="text-center">Action</th>
-                                                    <th class="text-center">Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($posts as $post)
+                                                @foreach ($admins as $admin)
                                                 <tr>
-                                                    <td>{{$post->title}}</td>
-                                                    <td>{{$post->content}}</td>
+                                                    <td>{{$admin->title}}</td>
+                                                    <td>{{$admin->content}}</td>
                                                     <td>
-                                                        <img src="/postimage/{{$post->image}}" alt="post image">
+                                                        <img src="/postimage/{{$admin->image}}" alt="post image">
                                                     </td>
-                                                    <td>{{$post->author_name}}</td>
-                                                    <td>{{$post->user_type}}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.edit.posts', ['id' => $post->id]) }}">
+                                                        @if($admin->post_status == 'active')
+                                                        <a href="{{route('blog.post.reject',$admin->id)}}" onclick="return confirm('Are you sure to reject this post?')">
+                                                            <label class="btn btn-success btn-sm">Active</label>
+                                                        </a>
+                                                        @else
+                                                        <a href="{{route('blog.post.accept',$admin->id)}}" onclick="return confirm('Are you sure to active this post?')">
+                                                            <label class="btn btn-danger btn-sm">Inactive</label>
+                                                        </a>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$admin->author_name}}</td>
+                                                    <td>{{$admin->user_type}}</td>
+                                                    <td>
+                                                        <a href="{{ route('admin.edit.posts', ['id' => $admin->id]) }}">
                                                             <button class="btn btn-outline-info btn-sm">edit</button>
                                                         </a>
-                                                        <a href="{{ route('admin.delete.posts', ['id' => $post->id]) }}">
+                                                        <a href="{{ route('admin.delete.posts', ['id' => $admin->id]) }}">
                                                         <button class="btn btn-outline-danger btn-sm" onclick="return myFunction()">delete</button>
                                                         </a>
                                                     </td>
+                                                </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <h4 class="card-title text-sm-center">Users Posts</h4>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Posted By</th>
+                                                    <th>User type</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($users as $user)
+                                                <tr>
+                                                    <td>{{$user->title}}</td>
+                                                    <td>{{$user->content}}</td>
                                                     <td>
-                                                        @if($post->post_status == 'active')
-                                                        <label class="btn btn-success btn-sm">Active</label>
+                                                        <img src="/postimage/{{$user->image}}" alt="post image">
+                                                    </td>
+                                                    <td>
+                                                        @if($user->post_status == 'active')
+                                                        <a href="{{route('blog.post.reject',$user->id)}}" onclick="return confirm('Are you sure to reject this post?')">
+                                                            <label class="btn btn-success btn-sm">Active</label>
+                                                        </a>
                                                         @else
-                                                        <label class="btn btn-danger btn-sm">Inactive</label>
+                                                        <a href="{{route('blog.post.accept',$user->id)}}" onclick="return confirm('Are you sure to active this post?')">
+                                                            <label class="btn btn-danger btn-sm">Inactive</label>
+                                                        </a>
                                                         @endif
+                                                    </td>
+                                                    <td>{{$user->author_name}}</td>
+                                                    <td>{{$user->user_type}}</td>
+                                                    <td>
+                                                        <a href="{{ route('admin.edit.posts', ['id' => $user->id]) }}">
+                                                            <button class="btn btn-outline-info btn-sm">edit</button>
+                                                        </a>
+                                                        <a href="{{ route('admin.delete.posts', ['id' => $user->id]) }}">
+                                                        <button class="btn btn-outline-danger btn-sm" onclick="return myFunction()">delete</button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -312,9 +379,18 @@
     <script src="{{ asset('admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
         function myFunction() {
-            if(!confirm("Are You Sure to delete this"))
+            if(!confirm("Are You Sure to delete this?"))
+            event.preventDefault();
+        }
+    </script>
+    <script>
+        function warning() {
+            if(!confirm("Are You Sure to make this change?"))
             event.preventDefault();
         }
     </script>

@@ -87,6 +87,6 @@
                 </div>
             </div>
         </div>
-        <p class="border-top mb-0 mt-4 pt-3 small">&copy; <script>document.write(new Date().getFullYear())</script>, JoeBlog Created By <a href="https://www.devcrud.com" class="text-muted font-weight-bold" target="_blank">DevCrud.</a>  All rights reserved </p>
+        <p class="border-top mb-0 mt-4 pt-3 small">&copy; <script>document.write(new Date().getFullYear())</script>, SeveBlog Created By <a href="https://www.steveharvey.com" class="text-muted font-weight-bold" target="_blank">Steve Harvey</a>  All rights reserved </p>
     </div>
 </footer>
