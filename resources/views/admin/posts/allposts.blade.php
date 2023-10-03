@@ -44,7 +44,7 @@
 
                 <div class="content-wrapper">
                     <div class="row justify-content-center">
-                        <div class="col-lg-10 grid-margin stretch-card">
+                        <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title text-sm-center">All Posts</h4>
@@ -52,22 +52,42 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Profile</th>
-                                                    <th>VatNo.</th>
-                                                    <th>Created</th>
-                                                    <th>Status</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
+                                                    <th>Posted By</th>
+                                                    <th>User type</th>
+                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center">Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($posts as $post)
                                                 <tr>
-                                                    <td>Jacob</td>
-                                                    <td>53275531</td>
-                                                    <td>12 May 2017</td>
+                                                    <td>{{$post->title}}</td>
+                                                    <td>{{$post->content}}</td>
                                                     <td>
+                                                        <img src="/postimage/{{$post->image}}" alt="post image">
+                                                    </td>
+                                                    <td>{{$post->author_name}}</td>
+                                                    <td>{{$post->user_type}}</td>
+                                                    <td>
+                                                        <a href="{{ route('admin.edit.posts', ['id' => $post->id]) }}">
+                                                            <button class="btn btn-outline-info btn-sm">edit</button>
+                                                        </a>
+                                                        <a href="{{ route('admin.delete.posts', ['id' => $post->id]) }}">
+                                                        <button class="btn btn-outline-danger btn-sm" onclick="return myFunction()">delete</button>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        @if($post->post_status == 'active')
                                                         <label class="btn btn-success btn-sm">Active</label>
+                                                        @else
                                                         <label class="btn btn-danger btn-sm">Inactive</label>
+                                                        @endif
                                                     </td>
                                                 </tr>
+                                                @endforeach
 
                                             </tbody>
                                         </table>
@@ -292,6 +312,12 @@
     <script src="{{ asset('admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page-->
+    <script>
+        function myFunction() {
+            if(!confirm("Are You Sure to delete this"))
+            event.preventDefault();
+        }
+    </script>
     @stack('js')
 </body>
 

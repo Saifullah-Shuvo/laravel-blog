@@ -69,10 +69,10 @@ Route::middleware(['auth:admin','verified'])->group(function () {
     Route::get('admin/posts', [AdminController::class, 'index'])->name('admin.posts');
     Route::get('admin/posts/create', [AdminController::class, 'create'])->name('admin.create.posts');
     Route::post('admin/posts/store', [AdminController::class, 'store'])->name('admin.store.posts');
-    // //Route::get('/posts/{id}', [PostController::class, 'show']);
-    // Route::get('/posts/{id}/edit', [AdminController::class, 'edit'])->name('edit.posts');
-    // Route::post('/posts/{id}', [AdminController::class, 'update'])->name('update.posts');
-    // Route::get('/posts/{id}', [AdminController::class, 'destroy'])->name('delete.posts');
+    //Route::get('/posts/{id}', [PostController::class, 'show']);
+    Route::get('admin/posts/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit.posts');
+    Route::post('admin/posts/{id}', [AdminController::class, 'update'])->name('admin.update.posts');
+    Route::get('admin/posts/{id}', [AdminController::class, 'destroy'])->name('admin.delete.posts');
 });
 
 

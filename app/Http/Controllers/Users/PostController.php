@@ -12,7 +12,7 @@ class PostController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $posts = Post::where('user_id', $user->id)->get();
+        $posts = Post::where('user_id', $user->id)->where('user_type', '=', 'user')->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -121,6 +121,6 @@ class PostController extends Controller
         //end delete image
         $post->delete();
 
-        return redirect('/posts')->with('success', 'Post Deleted Successfully');
+        return redirect('/posts')->with('danger', 'Post Deleted Successfully');
     }
 }

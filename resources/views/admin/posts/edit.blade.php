@@ -55,26 +55,26 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title text-xl-center">Create post</h4>
-                                    <form class="forms-sample" method="POST" action="{{route('admin.store.posts')}}" enctype="multipart/form-data">
+                                    <form class="forms-sample" method="POST" action="{{route('admin.update.posts',['id' => $post->id])}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                             <label for="title">Title</label>
-                                            <input type="text" class="form-control" name="title" id="title"
-                                                placeholder="Enter the title of your blog post" required>
+                                            <input type="text" class="form-control" name="title" id="title" value="{{$post->title}}"
+                                                 required>
                                                 @error('title')
                                                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                                 @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="image">Image</label>
-                                            <input type="file" class="form-control" name="image" id="image">
+                                            <input type="file" class="form-control" name="image" id="image" required>
                                                 @error('image')
                                                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                                 @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="content">Content</label>
-                                            <textarea class="form-control" id="content" name="content" rows="8" placeholder="Write the content of your blog post" required></textarea>
+                                            <textarea class="form-control" id="content" name="content" rows="8" required>{{$post->content}}</textarea>
                                             @error('content')
                                             <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                         @enderror

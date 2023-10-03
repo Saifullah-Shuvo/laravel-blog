@@ -20,6 +20,9 @@
 
 <body>
     <x-app-layout>
+
+            {{-- @dd($posts) --}}
+
         <div class="container p-1 text-center bg-info text-white">
             <h4>
                 {{ Auth::user()->name }}{{ __('\'s Dashboard') }}
@@ -35,6 +38,20 @@
                 <!-- Top navigation-->
                 <!-- Page content-->
                 <div class="container">
+                    @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">x</button>
+                            {{session()->get('success')}}
+                        </div>
+                    @endif
+                    @if(session()->has('danger'))
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">x</button>
+                            {{session()->get('danger')}}
+                        </div>
+                    @endif
                     <h1 class="text-center">All blog posts</h1>
                     <table class="table">
                         <thead>
