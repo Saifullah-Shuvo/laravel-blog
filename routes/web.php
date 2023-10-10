@@ -82,6 +82,8 @@ Route::middleware(['auth:admin','verified'])->group(function () {
     Route::get('admin/posts/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit.posts');
     Route::post('admin/posts/{id}', [AdminController::class, 'update'])->name('admin.update.posts');
     Route::get('admin/posts/{id}', [AdminController::class, 'destroy'])->name('admin.delete.posts');
+
+    Route::get('admin/view/posts/{id}', [AdminController::class, 'userposts'])->name('admin.view.posts');
 });
 
 

@@ -108,4 +108,10 @@ class AdminController extends Controller
 
         return redirect('admin/posts')->with('danger', 'Post Deleted Successfully');
     }
+
+    public function userposts($id){
+        $post = Post::findOrFail($id);
+        // $users = Post::where('user_type','=','user')-> latest()->get();
+        return view('admin.posts.viewposts',compact('post'));
+    }
 }

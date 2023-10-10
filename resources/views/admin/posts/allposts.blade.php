@@ -146,8 +146,8 @@
                                                     <td>{{$user->author_name}}</td>
                                                     <td>{{$user->user_type}}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.edit.posts', ['id' => $user->id]) }}">
-                                                            <button class="btn btn-outline-info btn-sm">edit</button>
+                                                        <a href="{{ route('admin.view.posts', ['id' => $user->id]) }}">
+                                                            <button class="btn btn-outline-info btn-sm">View</button>
                                                         </a>
                                                         <a href="{{ route('admin.delete.posts', ['id' => $user->id]) }}">
                                                         <button class="btn btn-outline-danger btn-sm" onclick="return myFunction()">delete</button>
