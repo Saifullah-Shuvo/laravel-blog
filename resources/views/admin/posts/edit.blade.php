@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="image">Image</label>
-                                            <input type="file" class="form-control" name="image" id="image" required>
+                                            <input type="file" class="form-control" name="image" id="image">
                                                 @error('image')
                                                     <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                                 @enderror
@@ -89,7 +89,7 @@
                                             <div class="error"><span class="text-danger">{{ $message }}</span></div>
                                         @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary me-2 justify-content-center">Publish</button>
+                                        <button type="submit" class="btn btn-primary me-2 justify-content-center">Update</button>
 
                                     </form>
                                 </div>

@@ -60,47 +60,25 @@ Home
                 </div>
             </div> --}}
             <hr>
-            <div class="row" id="data-wrapper">
-                @foreach ($posts as $post)
-
-                <div class="col-lg-6">
-                    <div class="card text-center mb-5">
-                        <div class="card-header p-0">
-                            <div class="blog-media">
-                                <img src="/postimage/{{$post->image}}" alt="" class="w-100">
-                                <a href="#" class="badge badge-primary">#Placeat</a>
-                            </div>
-                        </div>
-                        <div class="card-body px-0">
-                            <h5 class="card-title mb-2">{{$post->title}}</h5>
-                            <small class="small text-muted">{{$post->updated_at}}
-                                <span class="px-2">-</span>
-                                <a href="#" class="text-muted">34 Comments</a>
-                            </small>
-                            <p class="my-2">{{$post->content}}</p>
-                        </div>
-
-                        <div class="card-footer p-0 text-center">
-                            <a href="{{route('blog.post.details',$post->id)}}" class="btn btn-outline-dark btn-sm">READ MORE</a>
-                        </div>
-                    </div>
+            <div id="data-wrapper">
+                <div class="row">
+                    @include('frontend.data')
                 </div>
-
-                @endforeach
             </div>
-            <div class="row text-center" style="padding:20px;">
-                {{-- <button class="btn btn-success load-more-data">Load More Data...</button> --}}
-                <button class="btn btn-primary btn-block my-4 load-more-data">Load More Posts</button>
-            </div>
-            <div class="auto-load text-center" style="display: none;">
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status">
-                        <span>Loading...</span>
+            <div>
+                <div class="row text-center" style="padding:20px;">
+                    {{-- <button class="btn btn-success load-more-data">Load More Data...</button> --}}
+                    <button class="btn btn-primary btn-block my-4 load-more-data">Load More Posts</button>
+                </div>
+                <div class="auto-load text-center" style="display: none;">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            {{-- <span>Loading...</span> --}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Sidebar -->
         <div class="page-sidebar text-center">
             <h6 class="sidebar-title section-title mb-4 mt-3">About</h6>
@@ -231,6 +209,7 @@ Home
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script>
         var ENDPOINT = "{{ route('blog.home') }}";
         var page = 1;
@@ -251,7 +230,7 @@ Home
                 .done(function (response) {
                     console.log(response);
                     if (response.html == '') {
-                        $('.auto-load').html("End :(");
+                        $('.auto-load').html("No more posts available");
                         return;
                     }
                     $('.auto-load').hide();

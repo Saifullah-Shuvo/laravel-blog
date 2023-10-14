@@ -9,9 +9,9 @@ class HomeController extends Controller
 {
     public function index(Request $request){
         // $posts = Post::where('post_status', '=', 'active')->latest()->limit(10)->get();
-        $posts = Post::where('post_status', '=', 'active')->paginate(6);
+        $posts = Post::where('post_status', '=', 'active')->orderBy('id', 'DESC')->paginate(6);
         if ($request->ajax()) {
-            $view = view('data', compact('posts'))->render();
+            $view = view('frontend.data', compact('posts'))->render();
 
             return response()->json(['html' => $view]);
         }

@@ -81,9 +81,9 @@ class AdminController extends Controller
             // $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
             $request->image->move('postimage', $imageName);
+            $post->image = $imageName;
         }
         //end
-        $post->image = $imageName;
 
         $post->save();
         return redirect('/admin/posts')->with('success', 'Post Updated Successfully');
