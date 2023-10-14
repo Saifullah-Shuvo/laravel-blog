@@ -19,6 +19,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+
 // Route::get('/', function () {
 //     return view('frontend.bloghome');
 // });
@@ -26,7 +27,7 @@ use App\Http\Controllers\HomeController;
 // Route::get('/singlepost', function () {
     //     return view('frontend.singlepost');
     // })->name('singlepost');
-    
+
     // Route::get('/component', function () {
         //     return view('frontend.component');
         // })->name('component');

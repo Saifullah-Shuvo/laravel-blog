@@ -7,9 +7,16 @@ use App\Models\Post;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $posts = Post::where('post_status', '=', 'active')->latest()->limit(10)->get();
+    public function index(Request $request){
+        // $posts = Post::where('post_status', '=', 'active')->latest()->limit(10)->get();
+        $posts = Post::where('post_status', '=', 'active')->paginate(6);
+        if ($request->ajax()) {
+            $view = view('data', compact('posts'))->render();
+
+            return response()->json(['html' => $view]);
+        }
         return view('frontend.bloghome',compact('posts'));
+
     }
 
     public function details($id){
@@ -32,6 +39,7 @@ class HomeController extends Controller
 
         return redirect()->back()->with('danger','Post Status Changed to Inactive');
     }
+
 }
 
 

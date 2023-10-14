@@ -60,9 +60,9 @@ Home
                 </div>
             </div> --}}
             <hr>
-            <div class="row">
+            <div class="row" id="data-wrapper">
                 @foreach ($posts as $post)
-                    
+
                 <div class="col-lg-6">
                     <div class="card text-center mb-5">
                         <div class="card-header p-0">
@@ -79,16 +79,26 @@ Home
                             </small>
                             <p class="my-2">{{$post->content}}</p>
                         </div>
-                        
+
                         <div class="card-footer p-0 text-center">
                             <a href="{{route('blog.post.details',$post->id)}}" class="btn btn-outline-dark btn-sm">READ MORE</a>
                         </div>
                     </div>
                 </div>
-                
+
                 @endforeach
             </div>
-            <button class="btn btn-primary btn-block my-4">Load More Posts</button>
+            <div class="row text-center" style="padding:20px;">
+                {{-- <button class="btn btn-success load-more-data">Load More Data...</button> --}}
+                <button class="btn btn-primary btn-block my-4 load-more-data">Load More Posts</button>
+            </div>
+            <div class="auto-load text-center" style="display: none;">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span>Loading...</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Sidebar -->
@@ -219,5 +229,37 @@ Home
 @endsection
 
 @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        var ENDPOINT = "{{ route('blog.home') }}";
+        var page = 1;
 
+        $(".load-more-data").click(function(){
+            page++;
+            LoadMore(page);
+        });
+        function LoadMore(page) {
+            $.ajax({
+                    url: ENDPOINT + "?page=" + page,
+                    datatype: "html",
+                    type: "get",
+                    beforeSend: function () {
+                        $('.auto-load').show();
+                    }
+                })
+                .done(function (response) {
+                    console.log(response);
+                    if (response.html == '') {
+                        $('.auto-load').html("End :(");
+                        return;
+                    }
+                    $('.auto-load').hide();
+                    $("#data-wrapper").append("<div class='row'>" + response.html + "</div>");
+                })
+                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                    console.log('Server error occured');
+                });
+        }
+    </script>
 @endpush
