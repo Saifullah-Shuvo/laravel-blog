@@ -34,6 +34,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/',[HomeController::class, 'index'])->name('blog.home');
 Route::get('/post/details/{id}',[HomeController::class, 'details'])->name('blog.post.details');
+Route::get('/post/all',[HomeController::class, 'allposts'])->name('blog.post.all');
 
 Route::get('/accept_post/{id}',[HomeController::class, 'accept'])->name('blog.post.accept');
 Route::get('/reject_post/{id}',[HomeController::class, 'reject'])->name('blog.post.reject');

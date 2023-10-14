@@ -16,7 +16,12 @@ class HomeController extends Controller
             return response()->json(['html' => $view]);
         }
         return view('frontend.bloghome',compact('posts'));
-
+        
+    }
+    
+    public function allposts(){
+        $posts = Post::where('post_status', '=', 'active')->orderBy('id', 'DESC')->paginate(10);
+        return view('frontend.allposts',compact('posts'));
     }
 
     public function details($id){
