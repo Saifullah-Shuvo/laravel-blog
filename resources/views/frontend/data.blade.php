@@ -9,7 +9,7 @@
             </div>
             <div class="card-body px-0">
                 <h5 class="card-title mb-2">{{ $post->title }}</h5>
-                <small class="small text-muted">{{ $post->updated_at }}
+                <small class="small text-muted">{{ $post->created_at->diffForHumans() }}
                     <span class="px-2">-</span>
                     <a href="#" class="text-muted">34 Comments</a>
                 </small>

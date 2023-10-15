@@ -24,7 +24,7 @@ Single Page
                         <small class="small text-muted">
                             <a href="#" class="text-muted">POST BY: {{$post->author_name}}</a>
                             <span class="px-2">·</span>
-                            <span>{{$post->updated_at}}</span>
+                            <span>{{$post->created_at->diffForHumans()}}</span>
                             <span class="px-2">·</span>
                             <a href="#" class="text-muted">32 Comments</a>
                         </small>
