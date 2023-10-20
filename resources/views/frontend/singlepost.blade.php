@@ -10,7 +10,7 @@ Single Page
 @endpush
 
 @section('content')
-    
+
     <section class="container">
         <div class="page-container">
             <div class="page-content">
@@ -36,7 +36,7 @@ Single Page
                     <div class="card-footer">
                         <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Comments 4</a></h6>
                         <hr>
-                        <div class="media">
+                        {{-- <div class="media">
                             <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">Janice Wilder</h6>
@@ -54,39 +54,41 @@ Single Page
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="media mt-5">
                             <img src="{{asset('assets/imgs/avatar-2.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">Crosby Meadows</h6>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
-                                <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
+                                {{-- <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
                             </div>
                         </div>
-                        <div class="media mt-4">
+                        {{-- <div class="media mt-4">
                             <img src="{{asset('assets/imgs/avatar-3.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">Jean Wiley</h6>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
                                 <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
                         <hr>
-                        <form>
+                        <form action="{{route('comment.store')}}" method="POST">
+                            @csrf
                             <div class="form-row">
+                                <input type="hidden" name="post_id" value="{{$post->id}}">
                                 <div class="col-12 form-group">
-                                    <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Enter Your Comment Here"></textarea>
+                                    <textarea name="body" id="" cols="30" rows="10" class="form-control" placeholder="Enter Your Comment Here"></textarea>
                                 </div>
                                 <div class="col-sm-4 form-group">
-                                    <input type="text" class="form-control" value="Name">
+                                    <input type="text" name="visitor_name" class="form-control" placeholder="Name">
                                 </div>
                                 <div class="col-sm-4 form-group">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="visitor_email" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="col-sm-4 form-group">
-                                    <input type="url" class="form-control" placeholder="Website">
+                                    <input type="url" name="visitor_website" class="form-control" placeholder="Website">
                                 </div>
                                 <div class="form-group col-12">
                                     <button class="btn btn-primary btn-block">Post Comment</button>
@@ -116,7 +118,7 @@ Single Page
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    {{-- <div class="col-md-6 col-lg-4">
                         <div class="card mb-5">
                             <div class="card-header p-0">
                                 <div class="blog-media">
@@ -149,7 +151,7 @@ Single Page
                                 </small>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Sidebar -->
