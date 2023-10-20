@@ -8,29 +8,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
 // Route::get('/', function () {
 //     return view('frontend.bloghome');
 // });
-
-// Route::get('/singlepost', function () {
-    //     return view('frontend.singlepost');
-    // })->name('singlepost');
-
-    // Route::get('/component', function () {
-        //     return view('frontend.component');
-        // })->name('component');
 
 Route::get('/',[HomeController::class, 'index'])->name('blog.home');
 Route::get('/post/details/{id}',[HomeController::class, 'details'])->name('blog.post.details');
