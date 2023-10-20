@@ -26,7 +26,7 @@ Single Page
                             <span class="px-2">·</span>
                             <span>{{$post->created_at->diffForHumans()}}</span>
                             <span class="px-2">·</span>
-                            <a href="#" class="text-muted">32 Comments</a>
+                            <a href="#" class="text-muted">{{ count($post->comments) }} Comments</a>
                         </small>
                     </div>
                     <div class="card-body border-top">
@@ -34,7 +34,7 @@ Single Page
                     </div>
 
                     <div class="card-footer">
-                        <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Comments 4</a></h6>
+                        <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Comments {{ count($post->comments) }}</a></h6>
                         <hr>
                         {{-- <div class="media">
                             <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
@@ -55,22 +55,19 @@ Single Page
                                 </div>
                             </div>
                         </div> --}}
+                        @foreach ($post->comments as $key => $comment)
+
                         <div class="media mt-5">
                             <img src="{{asset('assets/imgs/avatar-2.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
-                                <h6 class="mt-0">Crosby Meadows</h6>
-                                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
-                                {{-- <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
-                            </div>
-                        </div>
-                        {{-- <div class="media mt-4">
-                            <img src="{{asset('assets/imgs/avatar-3.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
-                            <div class="media-body">
-                                <h6 class="mt-0">Jean Wiley</h6>
-                                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
+                                <h6 class="mt-0">{{$comment->visitor_name}}</h6>
+                                <span>{{$comment->created_at->diffForHumans()}}</span>
+                                <p>{{$comment->body}}</p>
                                 <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
                             </div>
-                        </div> --}}
+                        </div>
+
+                        @endforeach
 
                         <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
                         <hr>

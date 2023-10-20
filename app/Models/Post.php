@@ -14,4 +14,10 @@ class Post extends Model
         'content',
         'image',
     ];
+
+    // protected $table = 'posts';
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }
