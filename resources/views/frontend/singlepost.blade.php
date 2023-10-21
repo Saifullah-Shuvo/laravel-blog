@@ -2,7 +2,7 @@
 @extends('frontend.master')
 
 @section('title')
-Single Page
+Single Post page
 @endsection
 
 @push('css')
@@ -36,34 +36,17 @@ Single Page
                     <div class="card-footer">
                         <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Comments {{ count($post->comments) }}</a></h6>
                         <hr>
-                        {{-- <div class="media">
-                            <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
-                            <div class="media-body">
-                                <h6 class="mt-0">Janice Wilder</h6>
-                                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
-                                <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
-                                <div class="media mt-5">
-                                    <a class="mr-3" href="#">
-                                    <img src="{{asset('assets/imgs/avatar.jpg')}}" class="thumb-sm rounded-circle" alt="...">
-                                    </a>
-                                    <div class="media-body align-items-center">
-                                        <h6 class="mt-0">Joe Mitchell</h6>
-                                        <p>Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus</p>
-                                        <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
+                        
                         @foreach ($post->comments as $key => $comment)
 
                         <div class="media mt-5">
                             <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
+
                             <div class="media-body">
                                 <h6 class="mt-0">{{$comment->visitor_name}}</h6>
                                 <span>{{$comment->created_at->diffForHumans()}}</span>
                                 <p>{{$comment->body}}</p>
-                                {{-- <a id="show-reply-form" href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
+                                {{-- <a onclick="getCommentId({{$comment->id}})" id="show-reply-form" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
                                 <button onclick="getCommentId({{$comment->id}})" id="show-reply-form">Reply</button>
                                 {{-- <div id="reply-container"></div> --}}
                                 @include('frontend.reply-form')
@@ -81,8 +64,8 @@ Single Page
                                         {{-- <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
                                     </div>
                                 </div>
-                                @endforeach
 
+                                @endforeach
 
                             </div>
                         </div>
@@ -91,12 +74,35 @@ Single Page
 
                         <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
                         <hr>
+                        @auth
                         <form action="{{route('comment.store')}}" method="POST">
                             @csrf
                             <div class="form-row">
                                 <input type="hidden" name="post_id" value="{{$post->id}}">
                                 <div class="col-12 form-group">
-                                    <textarea name="body" id="" cols="30" rows="10" class="form-control" placeholder="Enter Your Comment Here"></textarea>
+                                    <textarea name="body" id="" cols="30" rows="5" class="form-control" placeholder="Enter Your Comment Here"></textarea>
+                                </div>
+                                <div class="col-sm-4 form-group">
+                                    <input type="text" name="visitor_name" class="form-control" value={{$user->name}}>
+                                </div>
+                                <div class="col-sm-4 form-group">
+                                    <input type="email" name="visitor_email" class="form-control" value={{$user->email}}>
+                                </div>
+                                <div class="col-sm-4 form-group">
+                                    <input type="url" name="visitor_website" class="form-control" placeholder="Website">
+                                </div>
+                                <div class="form-group col-12">
+                                    <button class="btn btn-primary btn-block">Post Comment</button>
+                                </div>
+                            </div>
+                        </form>
+                        @else
+                        <form action="{{route('comment.store')}}" method="POST">
+                            @csrf
+                            <div class="form-row">
+                                <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <div class="col-12 form-group">
+                                    <textarea name="body" id="" cols="30" rows="5" class="form-control" placeholder="Enter Your Comment Here"></textarea>
                                 </div>
                                 <div class="col-sm-4 form-group">
                                     <input type="text" name="visitor_name" class="form-control" placeholder="Name">
@@ -112,12 +118,14 @@ Single Page
                                 </div>
                             </div>
                         </form>
+                        @endauth
                     </div>
                 </div>
 
                 <h6 class="mt-5 text-center">Related Posts</h6>
                 <hr>
                 <div class="row">
+
                     <div class="col-md-6 col-lg-4">
                         <div class="card mb-5">
                             <div class="card-header p-0">
@@ -135,40 +143,7 @@ Single Page
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-md-6 col-lg-4">
-                        <div class="card mb-5">
-                            <div class="card-header p-0">
-                                <div class="blog-media">
-                                    <img src="{{asset('assets/imgs/blog-3.jpg')}}" alt="" class="w-100">
-                                    <a href="#" class="badge badge-primary">#dolores</a>
-                                </div>
-                            </div>
-                            <div class="card-body px-0">
-                                <h6 class="card-title mb-2"><a herf="#" class="text-dark">Dolorum Dolores Itaque</a></h6>
-                                <small class="small text-muted">January 19 2019
-                                    <span class="px-2">-</span>
-                                    <a href="#" class="text-muted">64 Comments</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 d-none d-lg-block">
-                        <div class="card mb-5">
-                            <div class="card-header p-0">
-                                <div class="blog-media">
-                                    <img src="{{asset('assets/imgs/blog-4.jpg')}}" alt="" class="w-100">
-                                    <a href="#" class="badge badge-primary">#amet</a>
-                                </div>
-                            </div>
-                            <div class="card-body px-0">
-                                <h6 class="card-title mb-2">Quisquam Dignissimos</h6>
-                                <small class="small text-muted">January 17 2019
-                                    <span class="px-2">-</span>
-                                    <a href="#" class="text-muted">93 Comments</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div> --}}
+                    
                 </div>
             </div>
             <!-- Sidebar -->

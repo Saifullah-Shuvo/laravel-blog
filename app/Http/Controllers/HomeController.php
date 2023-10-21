@@ -24,8 +24,9 @@ class HomeController extends Controller
     }
 
     public function details($id){
+        $user = auth()->user();
         $post = Post::findOrFail($id);
-        return view('frontend.singlepost',compact('post'));
+        return view('frontend.singlepost',compact('post','user'));
     }
 
     public function accept($id){
