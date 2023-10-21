@@ -58,12 +58,32 @@ Single Page
                         @foreach ($post->comments as $key => $comment)
 
                         <div class="media mt-5">
-                            <img src="{{asset('assets/imgs/avatar-2.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
+                            <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
                             <div class="media-body">
                                 <h6 class="mt-0">{{$comment->visitor_name}}</h6>
                                 <span>{{$comment->created_at->diffForHumans()}}</span>
                                 <p>{{$comment->body}}</p>
-                                <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
+                                {{-- <a id="show-reply-form" href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
+                                <button onclick="getCommentId({{$comment->id}})" id="show-reply-form">Reply</button>
+                                {{-- <div id="reply-container"></div> --}}
+                                @include('frontend.reply-form')
+
+                                @foreach ($comment->replies as $key => $reply )
+
+                                <div class="media mt-5">
+                                    <a class="mr-3" href="#">
+                                        <img src="{{asset('assets/imgs/avatar.jpg')}}" class="thumb-sm rounded-circle" alt="...">
+                                    </a>
+                                    <div class="media-body align-items-center">
+                                        <h6 class="mt-0">{{$reply->visitor_name}}</h6>
+                                        <span>{{$reply->created_at->diffForHumans()}}</span>
+                                        <p>{{$reply->body}}</p>
+                                        {{-- <a href="#" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
+                                    </div>
+                                </div>
+                                @endforeach
+
+
                             </div>
                         </div>
 
@@ -174,5 +194,18 @@ Single Page
 @endsection
 
 @push('js')
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#show-reply-form').click(function() {
+            $('#reply-form').toggle();
+        });
+    });
+</script>
+<script>
+    function getCommentId(commentID){
+        // localStorage.setItem('commentId',commentId);
+        document.getElementById("commentId").value = commentID;
+    }
+</script>
 @endpush

@@ -11,7 +11,7 @@
                 <h5 class="card-title mb-2">{{ $post->title }}</h5>
                 <small class="small text-muted">{{ $post->created_at->diffForHumans() }}
                     <span class="px-2">-</span>
-                    <a href="#" class="text-muted">34 Comments</a>
+                    <a href="#" class="text-muted">{{count($post->comments)}} Comments</a>
                 </small>
                 <p class="my-2">{{ $post->content }}</p>
             </div>
