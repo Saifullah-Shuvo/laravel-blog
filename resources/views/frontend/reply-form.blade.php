@@ -5,10 +5,10 @@
 </form> --}}
 
 @auth
-<form id="reply-form" action="{{route('comment.reply.add')}}" method="POST" style="display: none">
+<form class="reply-form" action="{{route('comment.reply.add')}}" method="POST" style="display: none">
     @csrf
     <div class="form-row">
-        <input type="hidden" id="commentId" name="comment_id" value="">
+        <input type="hidden" name="comment_id" value="{{$comment->id}}">
         <div class="col-12 form-group">
             <textarea name="body" id="" cols="20" rows="3" class="form-control" placeholder="Enter Your Reply Here"></textarea>
         </div>
@@ -27,10 +27,10 @@
     </div>
 </form>
 @else
-<form id="reply-form" action="{{route('comment.reply.add')}}" method="POST" style="display: none">
+<form class="reply-form" action="{{route('comment.reply.add')}}" method="POST" style="display: none">
     @csrf
     <div class="form-row">
-        <input type="hidden" id="commentId" name="comment_id" value="">
+        <input type="hidden" name="comment_id" value="{{$comment->id}}">
         <div class="col-12 form-group">
             <textarea name="body" id="" cols="20" rows="3" class="form-control" placeholder="Enter Your Reply Here"></textarea>
         </div>

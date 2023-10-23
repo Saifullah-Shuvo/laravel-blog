@@ -15,6 +15,6 @@ class ReplyController extends Controller
         $replies->comment_id = $request->comment_id;
         $replies->body = $request->body;
         $replies->save();
-        return redirect()->back()->with(['success','Reply added successfully!']);
+        return redirect()->back()->with(['success' => 'Reply added successfully!']);
     }
 }

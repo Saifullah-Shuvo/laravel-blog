@@ -16,6 +16,6 @@ class CommentController extends Controller
         $comments->body = $request->body;
         $comments->save();
 
-        return redirect()->back()->with(['success','Comment added successfully!']);
+        return redirect()->back()->with(['success' => 'Comment added successfully!']);
     }
 }

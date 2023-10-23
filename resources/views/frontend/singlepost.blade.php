@@ -6,7 +6,7 @@ Single Post page
 @endsection
 
 @push('css')
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 @endpush
 
 @section('content')
@@ -14,6 +14,13 @@ Single Post page
     <section class="container">
         <div class="page-container">
             <div class="page-content">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">x</button>
+                        {{session()->get('success')}}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header pt-0">
                         <h3 class="card-title mb-4">{{$post->title}}</h3>
@@ -39,17 +46,19 @@ Single Post page
                         
                         @foreach ($post->comments as $key => $comment)
 
-                        <div class="media mt-5">
+                        <div class="comment media mt-5">
                             <img src="{{asset('assets/imgs/avatar-1.jpg')}}" class="mr-3 thumb-sm rounded-circle" alt="...">
 
                             <div class="media-body">
                                 <h6 class="mt-0">{{$comment->visitor_name}}</h6>
                                 <span>{{$comment->created_at->diffForHumans()}}</span>
                                 <p>{{$comment->body}}</p>
-                                {{-- <a onclick="getCommentId({{$comment->id}})" id="show-reply-form" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a> --}}
-                                <button onclick="getCommentId({{$comment->id}})" id="show-reply-form">Reply</button>
+                                <a class="reply-button" class="text-dark small font-weight-bold"><i class="ti-back-right"></i> Replay</a>
+                                {{-- <button class="reply-button">Reply</button> --}}
                                 {{-- <div id="reply-container"></div> --}}
-                                @include('frontend.reply-form')
+                                <div class="reply-form" style="display: none;">
+                                    @include('frontend.reply-form')
+                                </div>
 
                                 @foreach ($comment->replies as $key => $reply )
 
@@ -170,17 +179,35 @@ Single Post page
 
 @push('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+{{-- <script>
     $(document).ready(function() {
         $('#show-reply-form').click(function() {
             $('#reply-form').toggle();
         });
     });
-</script>
-<script>
+</script> --}}
+{{-- <script>
     function getCommentId(commentID){
         // localStorage.setItem('commentId',commentId);
         document.getElementById("commentId").value = commentID;
     }
+</script> --}}
+<script>
+    $(document).ready(function() {
+        $('.reply-button').click(function() {
+            // Find the closest reply-form to the clicked button and toggle its visibility
+            $(this).closest('.comment').find('.reply-form').toggle();
+            // $('.reply-form').toggle();
+        });
+        // $('.reply-form form').submit(function(event) {
+        // event.preventDefault(); // Prevent the default form submission
+
+        // // You can add code here to handle the form submission, such as sending data to the server via AJAX.
+        // });
+    });
 </script>
 @endpush
